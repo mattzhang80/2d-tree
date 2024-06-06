@@ -1,0 +1,1838 @@
+ASSESSMENT SUMMARY
+
+Compilation:  PASSED
+API:          PASSED
+
+SpotBugs:     PASSED
+PMD:          PASSED
+Checkstyle:   FAILED (0 errors, 6 warnings)
+
+Correctness:  50/52 tests passed
+Memory:       16/16 tests passed
+Timing:       41/41 tests passed
+
+ASSESSMENT DETAILS
+
+The following files were submitted:
+----------------------------------
+ 2.0K Mar 29 23:44 acknowledgments.txt
+  13K Mar 29 23:39 KdTreeST.java
+ 4.4K Mar 28 20:35 PointST.java
+ 5.3K Mar 29 23:55 readme.txt
+
+
+The acknowledgments.txt file has been submitted.
+This assessment will be graded.
+
+
+********************************************************************************
+*  COMPILING                                                                    
+********************************************************************************
+
+
+% javac PointST.java
+*-----------------------------------------------------------
+
+% javac KdTreeST.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+Checking the APIs of your programs.
+*-----------------------------------------------------------
+PointST:
+
+KdTreeST:
+
+================================================================
+
+
+********************************************************************************
+*  CHECKING STYLE AND COMMON BUG PATTERNS                                       
+********************************************************************************
+
+
+% spotbugs *.class
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+% pmd .
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+% checkstyle *.java
+*-----------------------------------------------------------
+[WARN] readme.txt:10: Line exceeds 87 characters. [LineLength]
+[WARN] readme.txt:11: Line exceeds 87 characters. [LineLength]
+[WARN] readme.txt:12: Line exceeds 87 characters. [LineLength]
+[WARN] readme.txt:21: Line exceeds 87 characters. [LineLength]
+[WARN] readme.txt:25: Line exceeds 87 characters. [LineLength]
+[WARN] readme.txt:26: Line exceeds 87 characters. [LineLength]
+Checkstyle ends with 0 errors and 6 warnings.
+
+% custom checkstyle checks for PointST.java
+*-----------------------------------------------------------
+
+% custom checkstyle checks for KdTreeST.java
+*-----------------------------------------------------------
+
+% custom checkstyle checks for readme.txt
+*-----------------------------------------------------------
+
+% custom checkstyle checks for acknowledgments.txt
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+********************************************************************************
+*  TESTING CORRECTNESS
+********************************************************************************
+
+Testing correctness of PointST
+*-----------------------------------------------------------
+Running 16 total tests.
+
+In the tests below, we consider two classes of points.
+  * Distinct points: no two points have same x- and y-coordinates
+  * General points:  no restrictions on the x- or y-coordinates of the points
+
+A point in an m-by-m grid means that it is of the form (i/m, j/m),
+where i and j are integers between 0 and m (inclusive).
+
+Test 1a: insert n random distinct points; check size() and isEmpty() after each 
+insertion
+  * 2 random distinct points in a 1-by-1 grid
+  * 64 random distinct points in a 8-by-8 grid
+  * 100 random distinct points in a 16-by-16 grid
+  * 1000 random distinct points in a 128-by-128 grid
+  * 5000 random distinct points in a 1024-by-1024 grid
+  * 50000 random distinct points in a 65536-by-65536 grid
+==> passed
+
+Test 1b: insert n random points; check size() and isEmpty() after each insertion
+         (size may be less than n because of duplicates)
+  * 5 random general points in a 1-by-1 grid
+  * 50 random general points in a 8-by-8 grid
+  * 100 random general points in a 16-by-16 grid
+  * 1000 random general points in a 128-by-128 grid
+  * 5000 random general points in a 1024-by-1024 grid
+  * 50000 random general points in a 65536-by-65536 grid
+==> passed
+
+Test 2a: insert n random distinct points; check contains() with random query points
+  * 2 random distinct points in a 1-by-1 grid
+  * 10 random distinct points in a 4-by-4 grid
+  * 20 random distinct points in a 8-by-8 grid
+  * 10000 random distinct points in a 128-by-128 grid
+  * 100000 random distinct points in a 1024-by-1024 grid
+  * 100000 random distinct points in a 65536-by-65536 grid
+==> passed
+
+Test 2b: insert n random points; check contains() with random query points
+  * 1 random general points in a 1-by-1 grid
+  * 10 random general points in a 4-by-4 grid
+  * 20 random general points in a 8-by-8 grid
+  * 10000 random general points in a 128-by-128 grid
+  * 100000 random general points in a 1024-by-1024 grid
+  * 100000 random general points in a 65536-by-65536 grid
+==> passed
+
+Test 3a: insert random distinct points; check get() with random query points
+  * 2 random distinct points in a 1-by-1 grid
+  * 10 random distinct points in a 4-by-4 grid
+  * 20 random distinct points in a 8-by-8 grid
+  * 100 random distinct points in a 16-by-16 grid
+  * 1000 random distinct points in a 64-by-64 grid
+  * 10000 random distinct points in a 128-by-128 grid
+==> passed
+
+Test 3b: insert random points; check get() with random query points
+  * 2 random general points in a 1-by-1 grid
+  * 10 random general points in a 4-by-4 grid
+  * 20 random general points in a 8-by-8 grid
+  * 100 random general points in a 16-by-16 grid
+  * 1000 random general points in a 64-by-64 grid
+  * 10000 random general points in a 128-by-128 grid
+==> passed
+
+Test 4a: insert random distinct points; check nearest() with random query points
+  * 10 random distinct points in a 4-by-4 grid
+  * 15 random distinct points in a 8-by-8 grid
+  * 20 random distinct points in a 16-by-16 grid
+  * 100 random distinct points in a 32-by-32 grid
+  * 10000 random distinct points in a 65536-by-65536 grid
+==> passed
+
+Test 4b: insert random points; check nearest() with random query points
+  * 10 random general points in a 4-by-4 grid
+  * 15 random general points in a 8-by-8 grid
+  * 20 random general points in a 16-by-16 grid
+  * 100 random general points in a 32-by-32 grid
+  * 10000 random general points in a 65536-by-65536 grid
+==> passed
+
+Test 5a: insert n random distinct points and call points()
+  * 1 random distinct points in a 1-by-1 grid
+  * 10 random distinct points in a 4-by-4 grid
+  * 20 random distinct points in a 8-by-8 grid
+  * 100 random distinct points in a 16-by-16 grid
+  * 1000 random distinct points in a 128-by-128 grid
+  * 1000 random distinct points in a 1024-by-1024 grid
+==> passed
+
+Test 5b: insert n random points and call points()
+  * 5 random general points in a 1-by-1 grid
+  * 10 random general points in a 4-by-4 grid
+  * 20 random general points in a 8-by-8 grid
+  * 1000 random general points in a 16-by-16 grid
+  * 1000 random general points in a 128-by-128 grid
+  * 1000 random general points in a 1024-by-1024 grid
+==> passed
+
+Test 6a: insert random distinct points; check range() with random query rectangles
+  * 2 random distinct points and random rectangles in a 2-by-2 grid
+  * 10 random distinct points and random rectangles in a 4-by-4 grid
+  * 20 random distinct points and random rectangles in a 8-by-8 grid
+  * 100 random distinct points and random rectangles in a 16-by-16 grid
+  * 1000 random distinct points and random rectangles in a 64-by-64 grid
+  * 10000 random distinct points and random rectangles in a 128-by-128 grid
+==> passed
+
+Test 6b: insert random points; check range() with random query rectangles
+  * 2 random general points and random rectangles in a 2-by-2 grid
+  * 10 random general points and random rectangles in a 4-by-4 grid
+  * 20 random general points and random rectangles in a 8-by-8 grid
+  * 100 random general points and random rectangles in a 16-by-16 grid
+  * 1000 random general points and random rectangles in a 64-by-64 grid
+  * 10000 random general points and random rectangles in a 128-by-128 grid
+==> passed
+
+Test 7: check with no points
+ * size() and isEmpty()
+ * points()
+ * contains()
+ * get()
+ * nearest()
+ * range()
+==> passed
+
+Test 8: call methods with null arguments
+  * either argument to put() is null
+  * argument to get() is null
+  * argument to contains() is null
+  * argument to range() is null
+  * argument to nearest() is null
+==> passed
+
+Test 9: check intermixed sequence of calls to put(), isEmpty(), size(),
+        get(), contains(), range(), nearest(), and points() with
+        probabilities (p1, p2, p3, p4, p5, p6, p7, p8), respectively
+  * 10000 calls with random points in a 1-by-1 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 10000 calls with random points in a 16-by-16 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 10000 calls with random points in a 128-by-128 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 10000 calls with random points in a 1024-by-1024 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 10000 calls with random points in a 8192-by-8192 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 10000 calls with random points in a 65536-by-65536 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+==> passed
+
+Test 10: check that two PointST objects can be created at the same time
+==> passed
+
+
+Total: 16/16 tests passed!
+
+
+================================================================
+Testing correctness of KdTreeST
+*-----------------------------------------------------------
+Running 36 total tests.
+
+In the tests below, we consider three classes of points and rectangles.
+
+  * Non-degenerate points: no two points (or rectangles) share either an
+                           x-coordinate or a y-coordinate
+
+  * Distinct points:       no two points (or rectangles) share both an
+                           x-coordinate and a y-coordinate
+
+  * General points:        no restrictions on the x-coordinates or y-coordinates
+                           of the points (or rectangles)
+
+A point in an m-by-m grid means that it is of the form (i/m, j/m),
+where i and j are integers between 0 and m (inclusive).
+
+Test 1a: insert points from file; check size() and isEmpty() after each insertion
+  * input0.txt
+  * input1.txt
+  * input5.txt
+  * input10.txt
+  * input25.txt
+  * input50.txt
+==> passed
+
+Test 1b: insert non-degenerate points; check size() and isEmpty() after each insertion
+  * 1 random non-degenerate points in a 1-by-1 grid
+  * 5 random non-degenerate points in a 8-by-8 grid
+  * 10 random non-degenerate points in a 16-by-16 grid
+  * 50 random non-degenerate points in a 128-by-128 grid
+  * 500 random non-degenerate points in a 1024-by-1024 grid
+  * 50000 random non-degenerate points in a 65536-by-65536 grid
+==> passed
+
+Test 1c: insert distinct points; check size() and isEmpty() after each insertion
+  * 1 random distinct points in a 1-by-1 grid
+  * 10 random distinct points in a 8-by-8 grid
+  * 20 random distinct points in a 16-by-16 grid
+  * 10000 random distinct points in a 128-by-128 grid
+  * 100000 random distinct points in a 1024-by-1024 grid
+  * 100000 random distinct points in a 65536-by-65536 grid
+==> passed
+
+Test 1d: insert general points; check size() and isEmpty() after each insertion
+  * 5 random general points in a 1-by-1 grid
+  * 10 random general points in a 4-by-4 grid
+  * 50 random general points in a 8-by-8 grid
+  * 100000 random general points in a 16-by-16 grid
+  * 100000 random general points in a 128-by-128 grid
+  * 100000 random general points in a 1024-by-1024 grid
+==> passed
+
+Test 2a: insert points from file; check points()
+  * input1.txt
+  * input5.txt
+  * input10.txt
+==> passed
+
+Test 2b: insert non-degenerate points; check points()
+  * 1 random non-degenerate points in a 1-by-1 grid
+  * 5 random non-degenerate points in a 8-by-8 grid
+  * 10 random non-degenerate points in a 16-by-16 grid
+  * 50 random non-degenerate points in a 128-by-128 grid
+  * 500 random non-degenerate points in a 1024-by-1024 grid
+  * 1000 random non-degenerate points in a 65536-by-65536 grid
+==> passed
+
+Test 2c: insert distinct points; check points()
+  * 1 random distinct points in a 1-by-1 grid
+  * 10 random distinct points in a 8-by-8 grid
+  * 20 random distinct points in a 16-by-16 grid
+  * 1000 random distinct points in a 128-by-128 grid
+  * 1000 random distinct points in a 1024-by-1024 grid
+  * 1000 random distinct points in a 65536-by-65536 grid
+==> passed
+
+Test 2d: insert general points; check points()
+  * 5 random general points in a 1-by-1 grid
+  * 10 random general points in a 4-by-4 grid
+  * 20 random general points in a 8-by-8 grid
+  * 1000 random general points in a 16-by-16 grid
+  * 1000 random general points in a 128-by-128 grid
+  * 1000 random general points in a 1024-by-1024 grid
+==> passed
+
+Test 3a: insert points from file; check contains() with random query points
+  * input1.txt
+  * input5.txt
+  * input10.txt
+==> passed
+
+Test 3b: insert non-degenerate points; check contains() with random query points
+  * 1 random non-degenerate points in a 1-by-1 grid
+  * 5 random non-degenerate points in a 8-by-8 grid
+  * 10 random non-degenerate points in a 16-by-16 grid
+  * 20 random non-degenerate points in a 32-by-32 grid
+  * 500 random non-degenerate points in a 1024-by-1024 grid
+  * 10000 random non-degenerate points in a 65536-by-65536 grid
+==> passed
+
+Test 3c: insert distinct points; check contains() with random query points
+  * 1 random distinct points in a 1-by-1 grid
+  * 10 random distinct points in a 4-by-4 grid
+  * 20 random distinct points in a 8-by-8 grid
+  * 10000 random distinct points in a 128-by-128 grid
+  * 100000 random distinct points in a 1024-by-1024 grid
+  * 100000 random distinct points in a 65536-by-65536 grid
+==> passed
+
+Test 3d: insert general points; check contains() with random query points
+  * 10000 random general points in a 1-by-1 grid
+  * 10000 random general points in a 16-by-16 grid
+  * 10000 random general points in a 128-by-128 grid
+  * 10000 random general points in a 1024-by-1024 grid
+==> passed
+
+Test 4a: insert points from file; check get() with random query points
+  * input1.txt
+  * input5.txt
+  * input10.txt
+==> passed
+
+Test 4b: insert non-degenerate points; check get() with random query points
+  * 1 random non-degenerate points in a 1-by-1 grid
+  * 5 random non-degenerate points in a 8-by-8 grid
+  * 10 random non-degenerate points in a 16-by-16 grid
+  * 20 random non-degenerate points in a 32-by-32 grid
+  * 500 random non-degenerate points in a 1024-by-1024 grid
+  * 10000 random non-degenerate points in a 65536-by-65536 grid
+==> passed
+
+Test 4c: insert distinct points; check get() with random query points
+  * 2 random distinct points in a 1-by-1 grid
+  * 10 random distinct points in a 4-by-4 grid
+  * 20 random distinct points in a 8-by-8 grid
+  * 100 random distinct points in a 16-by-16 grid
+  * 1000 random distinct points in a 64-by-64 grid
+  * 10000 random distinct points in a 128-by-128 grid
+==> passed
+
+Test 4d: insert general points; check get() with random query points
+  * 10000 random general points in a 1-by-1 grid
+  * 10000 random general points in a 16-by-16 grid
+  * 10000 random general points in a 128-by-128 grid
+  * 10000 random general points in a 1024-by-1024 grid
+==> passed
+
+Test 5a: insert points from file; check range() with random query rectangles
+  * input1.txt
+  * input5.txt
+  * input10.txt
+==> passed
+
+Test 5b: insert non-degenerate points; check range() with random query rectangles
+  * 1 random non-degenerate points and random rectangles in a 2-by-2 grid
+  * 5 random non-degenerate points and random rectangles in a 8-by-8 grid
+  * 10 random non-degenerate points and random rectangles in a 16-by-16 grid
+  * 20 random non-degenerate points and random rectangles in a 32-by-32 grid
+  * 500 random non-degenerate points and random rectangles in a 1024-by-1024 grid
+  * 10000 random non-degenerate points and random rectangles in a 65536-by-65536 grid
+==> passed
+
+Test 5c: insert distinct points; check range() with random query rectangles
+  * 2 random distinct points and random rectangles in a 2-by-2 grid
+  * 10 random distinct points and random rectangles in a 4-by-4 grid
+  * 20 random distinct points and random rectangles in a 8-by-8 grid
+  * 100 random distinct points and random rectangles in a 16-by-16 grid
+  * 1000 random distinct points and random rectangles in a 64-by-64 grid
+  * 10000 random distinct points and random rectangles in a 128-by-128 grid
+==> passed
+
+Test 5d: insert general points; check range() with random query rectangles
+  * 5000 random general points and random rectangles in a 2-by-2 grid
+  * 5000 random general points and random rectangles in a 16-by-16 grid
+  * 5000 random general points and random rectangles in a 128-by-128 grid
+  * 5000 random general points and random rectangles in a 1024-by-1024 grid
+==> passed
+
+Test 5e: insert random points; check range() with tiny rectangles
+         enclosing each point
+  * 5 tiny rectangles and 5 general points in a 2-by-2 grid
+  * 10 tiny rectangles and 10 general points in a 4-by-4 grid
+  * 20 tiny rectangles and 20 general points in a 8-by-8 grid
+  * 5000 tiny rectangles and 5000 general points in a 128-by-128 grid
+  * 5000 tiny rectangles and 5000 general points in a 1024-by-1024 grid
+  * 5000 tiny rectangles and 5000 general points in a 65536-by-65536 grid
+==> passed
+
+Test 6a: insert points from file; check range() with random query rectangles
+         and check traversal of k-d tree
+  * input5.txt
+  * input10.txt
+==> passed
+
+Test 6b: insert non-degenerate points; check range() with random query rectangles
+         and check traversal of k-d tree
+  * 3 random non-degenerate points and 1000 random rectangles in a 4-by-4 grid
+  * 6 random non-degenerate points and 1000 random rectangles in a 8-by-8 grid
+  * 10 random non-degenerate points and 1000 random rectangles in a 16-by-16 grid
+  * 20 random non-degenerate points and 1000 random rectangles in a 32-by-32 grid
+  * 30 random non-degenerate points and 1000 random rectangles in a 64-by-64 grid
+==> passed
+
+Test 7a: insert points from file; check nearest() with random query points
+  * input1.txt
+  * input5.txt
+  * input10.txt
+==> passed
+
+Test 7b: insert non-degenerate points; check nearest() with random query points
+  * 5 random non-degenerate points in a 8-by-8 grid
+  * 10 random non-degenerate points in a 16-by-16 grid
+  * 20 random non-degenerate points in a 32-by-32 grid
+  * 30 random non-degenerate points in a 64-by-64 grid
+  * 10000 random non-degenerate points in a 65536-by-65536 grid
+==> passed
+
+Test 7c: insert distinct points; check nearest() with random query points
+  * 10 random distinct points in a 4-by-4 grid
+  * 15 random distinct points in a 8-by-8 grid
+  * 20 random distinct points in a 16-by-16 grid
+  * 100 random distinct points in a 32-by-32 grid
+  * 10000 random distinct points in a 65536-by-65536 grid
+==> passed
+
+Test 7d: insert general points; check nearest() with random query points
+  * 10000 random general points in a 16-by-16 grid
+  * 10000 random general points in a 128-by-128 grid
+  * 10000 random general points in a 1024-by-1024 grid
+==> passed
+
+Test 8a: insert points from file; check nearest() with random query points
+         and check traversal of k-d tree
+  * input5.txt
+    - student   nearest() = (0.7, 0.2)
+    - reference nearest() = (0.7, 0.2)
+    - performs slightly incorrect traversal of k-d tree during call to nearest()
+    - performs the update-the-champion update before the pruning test
+    - it should perform the pruning test first
+    - failed on trial 115 of 1000
+
+  * input10.txt
+    - student   nearest() = (0.32, 0.708)
+    - reference nearest() = (0.32, 0.708)
+    - performs incorrect traversal of k-d tree during call to nearest()
+    - query point = (0.49, 0.73)
+    - sequence of points inserted: 
+      A  0.372 0.497
+      B  0.564 0.413
+      C  0.226 0.577
+      D  0.144 0.179
+      E  0.083 0.51
+      F  0.32 0.708
+      G  0.417 0.362
+      H  0.862 0.825
+      I  0.785 0.725
+      J  0.499 0.208
+    - student sequence of k-d tree nodes involved in calls to Point2D methods:
+      A B H I C F D 
+    - reference sequence of k-d tree nodes involved in calls to Point2D methods:
+      A B H I C F 
+    - failed on trial 13 of 1000
+
+==> FAILED
+
+Test 8b: insert non-degenerate points; check nearest() with random query points
+         and check traversal of k-d tree
+  * 5 random non-degenerate points in a 8-by-8 grid
+  * 10 random non-degenerate points in a 16-by-16 grid
+  * 20 random non-degenerate points in a 32-by-32 grid
+    - student   nearest() = (0.53125, 0.4375)
+    - reference nearest() = (0.53125, 0.4375)
+    - performs incorrect traversal of k-d tree during call to nearest()
+    - query point = (0.625, 0.375)
+    - sequence of points inserted: 
+      A  0.4375 0.0
+      B  0.21875 0.125
+      C  0.34375 0.65625
+      D  0.78125 0.46875
+      E  0.71875 0.84375
+      F  0.28125 0.6875
+      G  0.375 0.8125
+      H  0.40625 0.21875
+      I  0.53125 0.4375
+      J  0.125 0.03125
+      K  0.8125 0.9375
+      L  0.84375 0.25
+      M  0.9375 0.0625
+      N  0.75 0.15625
+      O  1.0 1.0
+      P  0.90625 0.75
+      Q  0.0 0.09375
+      R  0.5625 0.875
+      S  0.59375 0.71875
+      T  0.15625 0.53125
+    - student sequence of k-d tree nodes involved in calls to Point2D methods:
+      A D I L E R S K P 
+    - reference sequence of k-d tree nodes involved in calls to Point2D methods:
+      A D I L E R S 
+    - failed on trial 5 of 1000
+
+  * 30 random non-degenerate points in a 64-by-64 grid
+    - student   nearest() = (0.53125, 0.4375)
+    - reference nearest() = (0.53125, 0.4375)
+    - performs incorrect traversal of k-d tree during call to nearest()
+    - number of student   entries = 15
+    - number of reference entries = 11
+    - failed on trial 13 of 1000
+
+  * 50 random non-degenerate points in a 128-by-128 grid
+    - student   nearest() = (0.5859375, 0.6875)
+    - reference nearest() = (0.5859375, 0.6875)
+    - performs incorrect traversal of k-d tree during call to nearest()
+    - number of student   entries = 19
+    - number of reference entries = 16
+    - entry 14 of the two sequences are not equal
+    - student   entry 14 = (0.515625, 0.140625)
+    - reference entry 14 = (0.75, 0.5703125)
+
+    - failed on trial 3 of 1000
+
+  * 1000 random non-degenerate points in a 2048-by-2048 grid
+    - student   nearest() = (0.0576171875, 0.9130859375)
+    - reference nearest() = (0.0576171875, 0.9130859375)
+    - performs incorrect traversal of k-d tree during call to nearest()
+    - number of student   entries = 23
+    - number of reference entries = 22
+    - entry 13 of the two sequences are not equal
+    - student   entry 13 = (0.1376953125, 0.9208984375)
+    - reference entry 13 = (0.1142578125, 0.87646484375)
+
+    - failed on trial 4 of 1000
+
+==> FAILED
+
+Test 9: check with no points
+  * size() and isEmpty()
+  * points()
+  * contains()
+  * get()
+  * nearest()
+  * range()
+==> passed
+
+Test 10: check that the specified exception is thrown with null arguments
+  * either argument to put() is null
+  * argument to get() is null
+  * argument to contains() is null
+  * argument to range() is null
+  * argument to nearest() is null
+==> passed
+
+Test 11: check with points and rectangles whose x- and y-coordinates
+         are outside unit square
+  * size() and isEmpty()
+  * points()
+  * contains()
+  * get()
+  * nearest()
+  * range()
+==> passed
+
+Test 12a: check intermixed sequence of calls to put(), isEmpty(), size(),
+          get(), contains(), range(), nearest(), and points() with
+          probabilities (p1, p2, p3, p4, p5, p6, p7, p8), respectively
+  * 20000 calls with non-degenerate points in a 1-by-1 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with non-degenerate points in a 16-by-16 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with non-degenerate points in a 128-by-128 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with non-degenerate points in a 1024-by-1024 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with non-degenerate points in a 8192-by-8192 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with non-degenerate points in a 65536-by-65536 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+==> passed
+
+Test 12b: check intermixed sequence of calls to put(), isEmpty(), size(),
+          get(), contains(), range(), nearest(), and points() with
+          probabilities (p1, p2, p3, p4, p5, p6, p7, p8), respectively
+  * 20000 calls with distinct points in a 1-by-1 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with distinct points in a 16-by-16 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with distinct points in a 128-by-128 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with distinct points in a 1024-by-1024 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with distinct points in a 8192-by-8192 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with distinct points in a 65536-by-65536 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+==> passed
+
+Test 12c: check intermixed sequence of calls to put(), isEmpty(), size(),
+          get(), contains(), range(), nearest(), and points() with
+          probabilities (p1, p2, p3, p4, p5, p6, p7, p8), respectively
+  * 20000 calls with general points in a 1-by-1 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with general points in a 16-by-16 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with general points in a 128-by-128 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with general points in a 1024-by-1024 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with general points in a 8192-by-8192 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with general points in a 65536-by-65536 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+==> passed
+
+Test 13: insert n random points into two different KdTreeST objects;
+        check that repeated calls to size(), get(), range(), nearest(),
+        and points() with the same arguments yield same results
+  * 10 random general points in a 4-by-4 grid
+  * 20 random general points in a 8-by-8 grid
+  * 100 random general points in a 128-by-128 grid
+  * 1000 random general points in a 65536-by-65536 grid
+==> passed
+
+
+Total: 34/36 tests passed!
+
+
+================================================================
+********************************************************************************
+*  MEMORY
+********************************************************************************
+
+Analyzing memory of PointST
+*-----------------------------------------------------------
+Running 8 total tests.
+
+Memory of Point2D object = 32 bytes
+
+Memory usage of a PointST with n points (including Point2D objects).
+Maximum allowed memory is 96n + 232 bytes.
+
+                 n       student (bytes)    reference (bytes)
+--------------------------------------------------------------
+=> passed        1          264                288
+=> passed        2          360                384
+=> passed        5          648                672
+=> passed       10         1128               1152
+=> passed       25         2568               2592
+=> passed      100         9768               9792
+=> passed      400        38568              38592
+=> passed      800        76968              76992
+==> 8/8 tests passed
+
+Total: 8/8 tests passed!
+
+Estimated student   memory (bytes) = 96.00 n + 168.00  (R^2 = 1.000)
+Estimated reference memory (bytes) = 96.00 n + 192.00  (R^2 = 1.000)
+
+================================================================
+
+
+
+Analyzing memory of KdTreeST
+*-----------------------------------------------------------
+Running 8 total tests.
+
+Memory of Point2D object = 32 bytes
+Memory of RectHV object = 48 bytes
+
+Memory usage of a KdTree with n points (including Point2D and RectHV objects).
+Maximum allowed memory is 312n + 192 bytes.
+
+                 n       student (bytes)    reference (bytes)
+--------------------------------------------------------------
+=> passed        1          248                240
+=> passed        2          392                384
+=> passed        5          824                816
+=> passed       10         1544               1536
+=> passed       25         3704               3696
+=> passed      100        14504              14496
+=> passed      400        57704              57696
+=> passed      800       115304             115296
+==> 8/8 tests passed
+
+Total: 8/8 tests passed!
+
+Student   memory (bytes) = 144.00 n + 104.00  (R^2 = 1.000)
+Reference memory (bytes) = 144.00 n + 96.00  (R^2 = 1.000)
+
+================================================================
+
+
+
+********************************************************************************
+*  TIMING
+********************************************************************************
+
+Timing PointST
+*-----------------------------------------------------------
+Running 16 total tests.
+
+
+Inserting n points into a PointST<String>
+
+               n      ops per second
+----------------------------------------
+=> passed   160000    1766481         
+=> passed   320000    1547888         
+=> passed   640000    1573051         
+=> passed  1280000    1294429         
+==> 4/4 tests passed
+
+Performing contains() queries after inserting n points into a PointST<String>
+
+               n      ops per second
+----------------------------------------
+=> passed   160000    1406593         
+=> passed   320000    1138940         
+=> passed   640000     836460         
+=> passed  1280000     791271         
+==> 4/4 tests passed
+
+Performing range() queries after inserting n points into a PointST<String>
+
+               n      ops per second
+----------------------------------------
+=> passed    10000       5934         
+=> passed    20000       2064         
+=> passed    40000        916         
+=> passed    80000        428         
+==> 4/4 tests passed
+
+Performing nearest() queries after inserting n points into a PointST<String>
+
+               n      ops per second
+----------------------------------------
+=> passed    10000       9493         
+=> passed    20000       2600         
+=> passed    40000       1097         
+=> passed    80000        512         
+==> 4/4 tests passed
+
+Total: 16/16 tests passed!
+
+
+================================================================
+
+
+
+Timing KdTreeST
+*-----------------------------------------------------------
+Running 25 total tests.
+
+
+Test 1a-d: Insert n points into a 2d tree. The table gives the average number of
+           calls to methods in RectHV and Point2D per call to put().
+
+                                                                                       
+         Point2D
+               n      ops per second       RectHV()           x()               y()    
+         equals()
+---------------------------------------------------------------------------------------
+-------------------------
+=> passed   100000     829663              21.7              41.5              41.5    
+           0.0         
+=> passed   250000     795416              23.7              45.4              45.4    
+           0.0         
+=> passed   500000     953022              23.8              45.7              45.7    
+           0.0         
+=> passed  1000000     772299              25.6              49.2              49.2    
+           0.0         
+==> 4/4 tests passed
+
+
+Test 2a-f: Insert n points into a 2d tree and perform contains() queries.
+           The table gives the average number of calls to methods in Point2D
+           per call to contains().
+
+                                                                               Point2D
+               n      ops per second       x()               y()               equals()
+---------------------------------------------------------------------------------------
+--------
+=> passed    10000    1784594              18.0              17.0              17.5    
+     
+=> passed    25000    1881620              19.8              18.8              19.3    
+     
+=> passed    50000    1630351              21.3              20.3              20.8    
+     
+=> passed   100000    1335959              21.9              20.9              21.4    
+     
+=> passed   250000    1148353              23.6              22.6              23.1    
+     
+=> passed   500000     966539              25.5              24.5              25.0    
+     
+=> passed  1000000     716437              27.2              26.2              26.7    
+     
+==> 7/7 tests passed
+
+
+Test 3a-g: Insert n points into a 2d tree and perform range() queries.
+           The table gives the average number of calls to methods in RectHV
+           and Point2D per call to range().
+
+               n      ops per second       intersects()      contains()        x()     
+          y()
+---------------------------------------------------------------------------------------
+------------------------
+=> passed    10000     728342              48.1              29.7              48.7    
+          13.3         
+=> passed    25000     668300              57.6              35.5              59.1    
+          17.2         
+=> passed    50000     556442              58.2              35.5              57.2    
+          12.8         
+=> passed   100000     419714              62.5              37.9              61.0    
+          15.0         
+=> passed   250000     303241              65.1              39.2              64.0    
+          16.2         
+=> passed   500000     287453              70.9              42.5              68.6    
+          16.9         
+=> passed  1000000     280255              74.4              44.3              71.3    
+          16.8         
+==> 7/7 tests passed
+
+
+Test 4a-g: Insert n points into a 2d tree and perform nearest() queries.
+           The table gives the average number of calls to methods in RectHV
+           and Point2D per call to nearest().
+
+                                         Point2D                 RectHV
+               n      ops per second     distanceSquaredTo()     distanceSquaredTo()   
+     x()               y()
+---------------------------------------------------------------------------------------
+---------------------------------
+=> passed    10000   391476                 285.0                  108.3               
+    253.7             253.7         
+=> passed    25000   402075                 271.7                  103.5               
+    243.4             242.4         
+=> passed    50000   332298                 289.9                  110.6               
+    258.8             258.4         
+=> passed   100000   240098                 310.6                  118.6               
+    278.4             277.3         
+=> passed   250000   220378                 335.8                  128.5               
+    301.7             300.7         
+=> passed   500000   197847                 360.7                  138.0               
+    323.5             322.4         
+=> passed  1000000   155419                 367.5                  140.9               
+    330.1             329.5         
+==> 7/7 tests passed
+
+
+Total: 25/25 tests passed!
+
+
+================================================================
+
+
+
+ASSESSMENT SUMMARY
+ 
+Compilation:  PASSED
+API:          PASSED
+ 
+SpotBugs:     PASSED
+PMD:          PASSED
+Checkstyle:   FAILED (0 errors, 6 warnings)
+ 
+Correctness:  50/52 tests passed
+Memory:       16/16 tests passed
+Timing:       41/41 tests passed
+ 
+ASSESSMENT DETAILS
+ 
+The following files were submitted:
+----------------------------------
+ 2.0K Mar 29 23:44 acknowledgments.txt
+  13K Mar 29 23:39 KdTreeST.java
+ 4.4K Mar 28 20:35 PointST.java
+ 5.3K Mar 29 23:55 readme.txt
+ 
+ 
+The acknowledgments.txt file has been submitted.
+This assessment will be graded.
+ 
+ 
+********************************************************************************
+*  COMPILING                                                                    
+********************************************************************************
+ 
+ 
+% javac PointST.java
+*-----------------------------------------------------------
+ 
+% javac KdTreeST.java
+*-----------------------------------------------------------
+ 
+ 
+================================================================
+ 
+ 
+Checking the APIs of your programs.
+*-----------------------------------------------------------
+PointST:
+ 
+KdTreeST:
+ 
+================================================================
+ 
+ 
+********************************************************************************
+*  CHECKING STYLE AND COMMON BUG PATTERNS                                       
+********************************************************************************
+ 
+ 
+% spotbugs *.class
+*-----------------------------------------------------------
+ 
+ 
+================================================================
+ 
+ 
+% pmd .
+*-----------------------------------------------------------
+ 
+ 
+================================================================
+ 
+ 
+% checkstyle *.java
+*-----------------------------------------------------------
+[WARN] readme.txt:10: Line exceeds 87 characters. [LineLength] 
+[WARN] readme.txt:11: Line exceeds 87 characters. [LineLength] 
+[WARN] readme.txt:12: Line exceeds 87 characters. [LineLength] 
+[WARN] readme.txt:21: Line exceeds 87 characters. [LineLength] 
+[WARN] readme.txt:25: Line exceeds 87 characters. [LineLength] 
+[WARN] readme.txt:26: Line exceeds 87 characters. [LineLength] 
+Checkstyle ends with 0 errors and 6 warnings. 
+ 
+% custom checkstyle checks for PointST.java
+*-----------------------------------------------------------
+ 
+% custom checkstyle checks for KdTreeST.java
+*-----------------------------------------------------------
+ 
+% custom checkstyle checks for readme.txt
+*-----------------------------------------------------------
+ 
+% custom checkstyle checks for acknowledgments.txt
+*-----------------------------------------------------------
+ 
+ 
+================================================================
+ 
+ 
+********************************************************************************
+*  TESTING CORRECTNESS
+********************************************************************************
+ 
+Testing correctness of PointST
+*-----------------------------------------------------------
+Running 16 total tests.
+ 
+In the tests below, we consider two classes of points.
+  * Distinct points: no two points have same x- and y-coordinates
+  * General points:  no restrictions on the x- or y-coordinates of the points
+ 
+A point in an m-by-m grid means that it is of the form (i/m, j/m),
+where i and j are integers between 0 and m (inclusive).
+ 
+Test 1a: insert n random distinct points; check size() and isEmpty() after each 
+insertion
+  * 2 random distinct points in a 1-by-1 grid
+  * 64 random distinct points in a 8-by-8 grid
+  * 100 random distinct points in a 16-by-16 grid
+  * 1000 random distinct points in a 128-by-128 grid
+  * 5000 random distinct points in a 1024-by-1024 grid
+  * 50000 random distinct points in a 65536-by-65536 grid
+==> passed
+ 
+Test 1b: insert n random points; check size() and isEmpty() after each insertion
+         (size may be less than n because of duplicates)
+  * 5 random general points in a 1-by-1 grid
+  * 50 random general points in a 8-by-8 grid
+  * 100 random general points in a 16-by-16 grid
+  * 1000 random general points in a 128-by-128 grid
+  * 5000 random general points in a 1024-by-1024 grid
+  * 50000 random general points in a 65536-by-65536 grid
+==> passed
+ 
+Test 2a: insert n random distinct points; check contains() with random query points
+  * 2 random distinct points in a 1-by-1 grid
+  * 10 random distinct points in a 4-by-4 grid
+  * 20 random distinct points in a 8-by-8 grid
+  * 10000 random distinct points in a 128-by-128 grid
+  * 100000 random distinct points in a 1024-by-1024 grid
+  * 100000 random distinct points in a 65536-by-65536 grid
+==> passed
+ 
+Test 2b: insert n random points; check contains() with random query points
+  * 1 random general points in a 1-by-1 grid
+  * 10 random general points in a 4-by-4 grid
+  * 20 random general points in a 8-by-8 grid
+  * 10000 random general points in a 128-by-128 grid
+  * 100000 random general points in a 1024-by-1024 grid
+  * 100000 random general points in a 65536-by-65536 grid
+==> passed
+ 
+Test 3a: insert random distinct points; check get() with random query points
+  * 2 random distinct points in a 1-by-1 grid
+  * 10 random distinct points in a 4-by-4 grid
+  * 20 random distinct points in a 8-by-8 grid
+  * 100 random distinct points in a 16-by-16 grid
+  * 1000 random distinct points in a 64-by-64 grid
+  * 10000 random distinct points in a 128-by-128 grid
+==> passed
+ 
+Test 3b: insert random points; check get() with random query points
+  * 2 random general points in a 1-by-1 grid
+  * 10 random general points in a 4-by-4 grid
+  * 20 random general points in a 8-by-8 grid
+  * 100 random general points in a 16-by-16 grid
+  * 1000 random general points in a 64-by-64 grid
+  * 10000 random general points in a 128-by-128 grid
+==> passed
+ 
+Test 4a: insert random distinct points; check nearest() with random query points
+  * 10 random distinct points in a 4-by-4 grid
+  * 15 random distinct points in a 8-by-8 grid
+  * 20 random distinct points in a 16-by-16 grid
+  * 100 random distinct points in a 32-by-32 grid
+  * 10000 random distinct points in a 65536-by-65536 grid
+==> passed
+ 
+Test 4b: insert random points; check nearest() with random query points
+  * 10 random general points in a 4-by-4 grid
+  * 15 random general points in a 8-by-8 grid
+  * 20 random general points in a 16-by-16 grid
+  * 100 random general points in a 32-by-32 grid
+  * 10000 random general points in a 65536-by-65536 grid
+==> passed
+ 
+Test 5a: insert n random distinct points and call points()
+  * 1 random distinct points in a 1-by-1 grid
+  * 10 random distinct points in a 4-by-4 grid
+  * 20 random distinct points in a 8-by-8 grid
+  * 100 random distinct points in a 16-by-16 grid
+  * 1000 random distinct points in a 128-by-128 grid
+  * 1000 random distinct points in a 1024-by-1024 grid
+==> passed
+ 
+Test 5b: insert n random points and call points()
+  * 5 random general points in a 1-by-1 grid
+  * 10 random general points in a 4-by-4 grid
+  * 20 random general points in a 8-by-8 grid
+  * 1000 random general points in a 16-by-16 grid
+  * 1000 random general points in a 128-by-128 grid
+  * 1000 random general points in a 1024-by-1024 grid
+==> passed
+ 
+Test 6a: insert random distinct points; check range() with random query rectangles
+  * 2 random distinct points and random rectangles in a 2-by-2 grid
+  * 10 random distinct points and random rectangles in a 4-by-4 grid
+  * 20 random distinct points and random rectangles in a 8-by-8 grid
+  * 100 random distinct points and random rectangles in a 16-by-16 grid
+  * 1000 random distinct points and random rectangles in a 64-by-64 grid
+  * 10000 random distinct points and random rectangles in a 128-by-128 grid
+==> passed
+ 
+Test 6b: insert random points; check range() with random query rectangles
+  * 2 random general points and random rectangles in a 2-by-2 grid
+  * 10 random general points and random rectangles in a 4-by-4 grid
+  * 20 random general points and random rectangles in a 8-by-8 grid
+  * 100 random general points and random rectangles in a 16-by-16 grid
+  * 1000 random general points and random rectangles in a 64-by-64 grid
+  * 10000 random general points and random rectangles in a 128-by-128 grid
+==> passed
+ 
+Test 7: check with no points
+ * size() and isEmpty()
+ * points()
+ * contains()
+ * get()
+ * nearest()
+ * range()
+==> passed
+ 
+Test 8: call methods with null arguments
+  * either argument to put() is null
+  * argument to get() is null
+  * argument to contains() is null
+  * argument to range() is null
+  * argument to nearest() is null
+==> passed
+ 
+Test 9: check intermixed sequence of calls to put(), isEmpty(), size(),
+        get(), contains(), range(), nearest(), and points() with
+        probabilities (p1, p2, p3, p4, p5, p6, p7, p8), respectively
+  * 10000 calls with random points in a 1-by-1 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 10000 calls with random points in a 16-by-16 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 10000 calls with random points in a 128-by-128 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 10000 calls with random points in a 1024-by-1024 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 10000 calls with random points in a 8192-by-8192 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 10000 calls with random points in a 65536-by-65536 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+==> passed
+ 
+Test 10: check that two PointST objects can be created at the same time
+==> passed
+ 
+ 
+Total: 16/16 tests passed!
+ 
+ 
+================================================================
+Testing correctness of KdTreeST
+*-----------------------------------------------------------
+Running 36 total tests.
+ 
+In the tests below, we consider three classes of points and rectangles.
+ 
+  * Non-degenerate points: no two points (or rectangles) share either an
+                           x-coordinate or a y-coordinate
+ 
+  * Distinct points:       no two points (or rectangles) share both an
+                           x-coordinate and a y-coordinate
+ 
+  * General points:        no restrictions on the x-coordinates or y-coordinates
+                           of the points (or rectangles)
+ 
+A point in an m-by-m grid means that it is of the form (i/m, j/m),
+where i and j are integers between 0 and m (inclusive).
+ 
+Test 1a: insert points from file; check size() and isEmpty() after each insertion
+  * input0.txt
+  * input1.txt
+  * input5.txt
+  * input10.txt
+  * input25.txt
+  * input50.txt
+==> passed
+ 
+Test 1b: insert non-degenerate points; check size() and isEmpty() after each insertion
+  * 1 random non-degenerate points in a 1-by-1 grid
+  * 5 random non-degenerate points in a 8-by-8 grid
+  * 10 random non-degenerate points in a 16-by-16 grid
+  * 50 random non-degenerate points in a 128-by-128 grid
+  * 500 random non-degenerate points in a 1024-by-1024 grid
+  * 50000 random non-degenerate points in a 65536-by-65536 grid
+==> passed
+ 
+Test 1c: insert distinct points; check size() and isEmpty() after each insertion
+  * 1 random distinct points in a 1-by-1 grid
+  * 10 random distinct points in a 8-by-8 grid
+  * 20 random distinct points in a 16-by-16 grid
+  * 10000 random distinct points in a 128-by-128 grid
+  * 100000 random distinct points in a 1024-by-1024 grid
+  * 100000 random distinct points in a 65536-by-65536 grid
+==> passed
+ 
+Test 1d: insert general points; check size() and isEmpty() after each insertion
+  * 5 random general points in a 1-by-1 grid
+  * 10 random general points in a 4-by-4 grid
+  * 50 random general points in a 8-by-8 grid
+  * 100000 random general points in a 16-by-16 grid
+  * 100000 random general points in a 128-by-128 grid
+  * 100000 random general points in a 1024-by-1024 grid
+==> passed
+ 
+Test 2a: insert points from file; check points()
+  * input1.txt
+  * input5.txt
+  * input10.txt
+==> passed
+ 
+Test 2b: insert non-degenerate points; check points()
+  * 1 random non-degenerate points in a 1-by-1 grid
+  * 5 random non-degenerate points in a 8-by-8 grid
+  * 10 random non-degenerate points in a 16-by-16 grid
+  * 50 random non-degenerate points in a 128-by-128 grid
+  * 500 random non-degenerate points in a 1024-by-1024 grid
+  * 1000 random non-degenerate points in a 65536-by-65536 grid
+==> passed
+ 
+Test 2c: insert distinct points; check points()
+  * 1 random distinct points in a 1-by-1 grid
+  * 10 random distinct points in a 8-by-8 grid
+  * 20 random distinct points in a 16-by-16 grid
+  * 1000 random distinct points in a 128-by-128 grid
+  * 1000 random distinct points in a 1024-by-1024 grid
+  * 1000 random distinct points in a 65536-by-65536 grid
+==> passed
+ 
+Test 2d: insert general points; check points()
+  * 5 random general points in a 1-by-1 grid
+  * 10 random general points in a 4-by-4 grid
+  * 20 random general points in a 8-by-8 grid
+  * 1000 random general points in a 16-by-16 grid
+  * 1000 random general points in a 128-by-128 grid
+  * 1000 random general points in a 1024-by-1024 grid
+==> passed
+ 
+Test 3a: insert points from file; check contains() with random query points
+  * input1.txt
+  * input5.txt
+  * input10.txt
+==> passed
+ 
+Test 3b: insert non-degenerate points; check contains() with random query points
+  * 1 random non-degenerate points in a 1-by-1 grid
+  * 5 random non-degenerate points in a 8-by-8 grid
+  * 10 random non-degenerate points in a 16-by-16 grid
+  * 20 random non-degenerate points in a 32-by-32 grid
+  * 500 random non-degenerate points in a 1024-by-1024 grid
+  * 10000 random non-degenerate points in a 65536-by-65536 grid
+==> passed
+ 
+Test 3c: insert distinct points; check contains() with random query points
+  * 1 random distinct points in a 1-by-1 grid
+  * 10 random distinct points in a 4-by-4 grid
+  * 20 random distinct points in a 8-by-8 grid
+  * 10000 random distinct points in a 128-by-128 grid
+  * 100000 random distinct points in a 1024-by-1024 grid
+  * 100000 random distinct points in a 65536-by-65536 grid
+==> passed
+ 
+Test 3d: insert general points; check contains() with random query points
+  * 10000 random general points in a 1-by-1 grid
+  * 10000 random general points in a 16-by-16 grid
+  * 10000 random general points in a 128-by-128 grid
+  * 10000 random general points in a 1024-by-1024 grid
+==> passed
+ 
+Test 4a: insert points from file; check get() with random query points
+  * input1.txt
+  * input5.txt
+  * input10.txt
+==> passed
+ 
+Test 4b: insert non-degenerate points; check get() with random query points
+  * 1 random non-degenerate points in a 1-by-1 grid
+  * 5 random non-degenerate points in a 8-by-8 grid
+  * 10 random non-degenerate points in a 16-by-16 grid
+  * 20 random non-degenerate points in a 32-by-32 grid
+  * 500 random non-degenerate points in a 1024-by-1024 grid
+  * 10000 random non-degenerate points in a 65536-by-65536 grid
+==> passed
+ 
+Test 4c: insert distinct points; check get() with random query points
+  * 2 random distinct points in a 1-by-1 grid
+  * 10 random distinct points in a 4-by-4 grid
+  * 20 random distinct points in a 8-by-8 grid
+  * 100 random distinct points in a 16-by-16 grid
+  * 1000 random distinct points in a 64-by-64 grid
+  * 10000 random distinct points in a 128-by-128 grid
+==> passed
+ 
+Test 4d: insert general points; check get() with random query points
+  * 10000 random general points in a 1-by-1 grid
+  * 10000 random general points in a 16-by-16 grid
+  * 10000 random general points in a 128-by-128 grid
+  * 10000 random general points in a 1024-by-1024 grid
+==> passed
+ 
+Test 5a: insert points from file; check range() with random query rectangles
+  * input1.txt
+  * input5.txt
+  * input10.txt
+==> passed
+ 
+Test 5b: insert non-degenerate points; check range() with random query rectangles
+  * 1 random non-degenerate points and random rectangles in a 2-by-2 grid
+  * 5 random non-degenerate points and random rectangles in a 8-by-8 grid
+  * 10 random non-degenerate points and random rectangles in a 16-by-16 grid
+  * 20 random non-degenerate points and random rectangles in a 32-by-32 grid
+  * 500 random non-degenerate points and random rectangles in a 1024-by-1024 grid
+  * 10000 random non-degenerate points and random rectangles in a 65536-by-65536 grid
+==> passed
+ 
+Test 5c: insert distinct points; check range() with random query rectangles
+  * 2 random distinct points and random rectangles in a 2-by-2 grid
+  * 10 random distinct points and random rectangles in a 4-by-4 grid
+  * 20 random distinct points and random rectangles in a 8-by-8 grid
+  * 100 random distinct points and random rectangles in a 16-by-16 grid
+  * 1000 random distinct points and random rectangles in a 64-by-64 grid
+  * 10000 random distinct points and random rectangles in a 128-by-128 grid
+==> passed
+ 
+Test 5d: insert general points; check range() with random query rectangles
+  * 5000 random general points and random rectangles in a 2-by-2 grid
+  * 5000 random general points and random rectangles in a 16-by-16 grid
+  * 5000 random general points and random rectangles in a 128-by-128 grid
+  * 5000 random general points and random rectangles in a 1024-by-1024 grid
+==> passed
+ 
+Test 5e: insert random points; check range() with tiny rectangles
+         enclosing each point
+  * 5 tiny rectangles and 5 general points in a 2-by-2 grid
+  * 10 tiny rectangles and 10 general points in a 4-by-4 grid
+  * 20 tiny rectangles and 20 general points in a 8-by-8 grid
+  * 5000 tiny rectangles and 5000 general points in a 128-by-128 grid
+  * 5000 tiny rectangles and 5000 general points in a 1024-by-1024 grid
+  * 5000 tiny rectangles and 5000 general points in a 65536-by-65536 grid
+==> passed
+ 
+Test 6a: insert points from file; check range() with random query rectangles
+         and check traversal of k-d tree
+  * input5.txt
+  * input10.txt
+==> passed
+ 
+Test 6b: insert non-degenerate points; check range() with random query rectangles
+         and check traversal of k-d tree
+  * 3 random non-degenerate points and 1000 random rectangles in a 4-by-4 grid
+  * 6 random non-degenerate points and 1000 random rectangles in a 8-by-8 grid
+  * 10 random non-degenerate points and 1000 random rectangles in a 16-by-16 grid
+  * 20 random non-degenerate points and 1000 random rectangles in a 32-by-32 grid
+  * 30 random non-degenerate points and 1000 random rectangles in a 64-by-64 grid
+==> passed
+ 
+Test 7a: insert points from file; check nearest() with random query points
+  * input1.txt
+  * input5.txt
+  * input10.txt
+==> passed
+ 
+Test 7b: insert non-degenerate points; check nearest() with random query points
+  * 5 random non-degenerate points in a 8-by-8 grid
+  * 10 random non-degenerate points in a 16-by-16 grid
+  * 20 random non-degenerate points in a 32-by-32 grid
+  * 30 random non-degenerate points in a 64-by-64 grid
+  * 10000 random non-degenerate points in a 65536-by-65536 grid
+==> passed
+ 
+Test 7c: insert distinct points; check nearest() with random query points
+  * 10 random distinct points in a 4-by-4 grid
+  * 15 random distinct points in a 8-by-8 grid
+  * 20 random distinct points in a 16-by-16 grid
+  * 100 random distinct points in a 32-by-32 grid
+  * 10000 random distinct points in a 65536-by-65536 grid
+==> passed
+ 
+Test 7d: insert general points; check nearest() with random query points
+  * 10000 random general points in a 16-by-16 grid
+  * 10000 random general points in a 128-by-128 grid
+  * 10000 random general points in a 1024-by-1024 grid
+==> passed
+ 
+Test 8a: insert points from file; check nearest() with random query points
+         and check traversal of k-d tree
+  * input5.txt
+    - student   nearest() = (0.7, 0.2)
+    - reference nearest() = (0.7, 0.2)
+    - performs slightly incorrect traversal of k-d tree during call to nearest() 
+    - performs the update-the-champion update before the pruning test 
+    - it should perform the pruning test first 
+    - failed on trial 115 of 1000
+ 
+  * input10.txt
+    - student   nearest() = (0.32, 0.708)
+    - reference nearest() = (0.32, 0.708)
+    - performs incorrect traversal of k-d tree during call to nearest()
+    - query point = (0.49, 0.73)
+    - sequence of points inserted: 
+      A  0.372 0.497
+      B  0.564 0.413
+      C  0.226 0.577
+      D  0.144 0.179
+      E  0.083 0.51
+      F  0.32 0.708
+      G  0.417 0.362
+      H  0.862 0.825
+      I  0.785 0.725
+      J  0.499 0.208
+    - student sequence of k-d tree nodes involved in calls to Point2D methods:
+      A B H I C F D 
+    - reference sequence of k-d tree nodes involved in calls to Point2D methods:
+      A B H I C F 
+    - failed on trial 13 of 1000
+ 
+==> FAILED
+ 
+Test 8b: insert non-degenerate points; check nearest() with random query points
+         and check traversal of k-d tree
+  * 5 random non-degenerate points in a 8-by-8 grid
+  * 10 random non-degenerate points in a 16-by-16 grid
+  * 20 random non-degenerate points in a 32-by-32 grid
+    - student   nearest() = (0.53125, 0.4375)
+    - reference nearest() = (0.53125, 0.4375)
+    - performs incorrect traversal of k-d tree during call to nearest()
+    - query point = (0.625, 0.375)
+    - sequence of points inserted: 
+      A  0.4375 0.0
+      B  0.21875 0.125
+      C  0.34375 0.65625
+      D  0.78125 0.46875
+      E  0.71875 0.84375
+      F  0.28125 0.6875
+      G  0.375 0.8125
+      H  0.40625 0.21875
+      I  0.53125 0.4375
+      J  0.125 0.03125
+      K  0.8125 0.9375
+      L  0.84375 0.25
+      M  0.9375 0.0625
+      N  0.75 0.15625
+      O  1.0 1.0
+      P  0.90625 0.75
+      Q  0.0 0.09375
+      R  0.5625 0.875
+      S  0.59375 0.71875
+      T  0.15625 0.53125
+    - student sequence of k-d tree nodes involved in calls to Point2D methods:
+      A D I L E R S K P 
+    - reference sequence of k-d tree nodes involved in calls to Point2D methods:
+      A D I L E R S 
+    - failed on trial 5 of 1000
+ 
+  * 30 random non-degenerate points in a 64-by-64 grid
+    - student   nearest() = (0.53125, 0.4375)
+    - reference nearest() = (0.53125, 0.4375)
+    - performs incorrect traversal of k-d tree during call to nearest()
+    - number of student   entries = 15
+    - number of reference entries = 11
+    - failed on trial 13 of 1000
+ 
+  * 50 random non-degenerate points in a 128-by-128 grid
+    - student   nearest() = (0.5859375, 0.6875)
+    - reference nearest() = (0.5859375, 0.6875)
+    - performs incorrect traversal of k-d tree during call to nearest()
+    - number of student   entries = 19
+    - number of reference entries = 16
+    - entry 14 of the two sequences are not equal
+    - student   entry 14 = (0.515625, 0.140625)
+    - reference entry 14 = (0.75, 0.5703125)
+ 
+    - failed on trial 3 of 1000
+ 
+  * 1000 random non-degenerate points in a 2048-by-2048 grid
+    - student   nearest() = (0.0576171875, 0.9130859375)
+    - reference nearest() = (0.0576171875, 0.9130859375)
+    - performs incorrect traversal of k-d tree during call to nearest()
+    - number of student   entries = 23
+    - number of reference entries = 22
+    - entry 13 of the two sequences are not equal
+    - student   entry 13 = (0.1376953125, 0.9208984375)
+    - reference entry 13 = (0.1142578125, 0.87646484375)
+ 
+    - failed on trial 4 of 1000
+ 
+==> FAILED
+ 
+Test 9: check with no points
+  * size() and isEmpty()
+  * points()
+  * contains()
+  * get()
+  * nearest()
+  * range()
+==> passed
+ 
+Test 10: check that the specified exception is thrown with null arguments
+  * either argument to put() is null
+  * argument to get() is null
+  * argument to contains() is null
+  * argument to range() is null
+  * argument to nearest() is null
+==> passed
+ 
+Test 11: check with points and rectangles whose x- and y-coordinates
+         are outside unit square
+  * size() and isEmpty()
+  * points()
+  * contains()
+  * get()
+  * nearest()
+  * range()
+==> passed
+ 
+Test 12a: check intermixed sequence of calls to put(), isEmpty(), size(),
+          get(), contains(), range(), nearest(), and points() with
+          probabilities (p1, p2, p3, p4, p5, p6, p7, p8), respectively
+  * 20000 calls with non-degenerate points in a 1-by-1 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with non-degenerate points in a 16-by-16 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with non-degenerate points in a 128-by-128 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with non-degenerate points in a 1024-by-1024 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with non-degenerate points in a 8192-by-8192 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with non-degenerate points in a 65536-by-65536 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+==> passed
+ 
+Test 12b: check intermixed sequence of calls to put(), isEmpty(), size(),
+          get(), contains(), range(), nearest(), and points() with
+          probabilities (p1, p2, p3, p4, p5, p6, p7, p8), respectively
+  * 20000 calls with distinct points in a 1-by-1 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with distinct points in a 16-by-16 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with distinct points in a 128-by-128 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with distinct points in a 1024-by-1024 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with distinct points in a 8192-by-8192 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with distinct points in a 65536-by-65536 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+==> passed
+ 
+Test 12c: check intermixed sequence of calls to put(), isEmpty(), size(),
+          get(), contains(), range(), nearest(), and points() with
+          probabilities (p1, p2, p3, p4, p5, p6, p7, p8), respectively
+  * 20000 calls with general points in a 1-by-1 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with general points in a 16-by-16 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with general points in a 128-by-128 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with general points in a 1024-by-1024 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with general points in a 8192-by-8192 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+  * 20000 calls with general points in a 65536-by-65536 grid
+    and probabilities (0.3, 0.05, 0.05, 0.05, 0.1, 0.2, 0.2, 0.05)
+==> passed
+ 
+Test 13: insert n random points into two different KdTreeST objects;
+        check that repeated calls to size(), get(), range(), nearest(),
+        and points() with the same arguments yield same results
+  * 10 random general points in a 4-by-4 grid
+  * 20 random general points in a 8-by-8 grid
+  * 100 random general points in a 128-by-128 grid
+  * 1000 random general points in a 65536-by-65536 grid
+==> passed
+ 
+ 
+Total: 34/36 tests passed!
+ 
+ 
+================================================================
+********************************************************************************
+*  MEMORY
+********************************************************************************
+ 
+Analyzing memory of PointST
+*-----------------------------------------------------------
+Running 8 total tests.
+ 
+Memory of Point2D object = 32 bytes
+ 
+Memory usage of a PointST with n points (including Point2D objects).
+Maximum allowed memory is 96n + 232 bytes.
+ 
+                 n       student (bytes)    reference (bytes)
+--------------------------------------------------------------
+=> passed        1          264                288
+=> passed        2          360                384
+=> passed        5          648                672
+=> passed       10         1128               1152
+=> passed       25         2568               2592
+=> passed      100         9768               9792
+=> passed      400        38568              38592
+=> passed      800        76968              76992
+==> 8/8 tests passed
+ 
+Total: 8/8 tests passed!
+ 
+Estimated student   memory (bytes) = 96.00 n + 168.00  (R^2 = 1.000)
+Estimated reference memory (bytes) = 96.00 n + 192.00  (R^2 = 1.000)
+ 
+================================================================
+ 
+ 
+ 
+Analyzing memory of KdTreeST
+*-----------------------------------------------------------
+Running 8 total tests.
+ 
+Memory of Point2D object = 32 bytes
+Memory of RectHV object = 48 bytes
+ 
+Memory usage of a KdTree with n points (including Point2D and RectHV objects).
+Maximum allowed memory is 312n + 192 bytes.
+ 
+                 n       student (bytes)    reference (bytes)
+--------------------------------------------------------------
+=> passed        1          248                240
+=> passed        2          392                384
+=> passed        5          824                816
+=> passed       10         1544               1536
+=> passed       25         3704               3696
+=> passed      100        14504              14496
+=> passed      400        57704              57696
+=> passed      800       115304             115296
+==> 8/8 tests passed
+ 
+Total: 8/8 tests passed!
+ 
+Student   memory (bytes) = 144.00 n + 104.00  (R^2 = 1.000)
+Reference memory (bytes) = 144.00 n + 96.00  (R^2 = 1.000)
+ 
+================================================================
+ 
+ 
+ 
+********************************************************************************
+*  TIMING
+********************************************************************************
+ 
+Timing PointST
+*-----------------------------------------------------------
+Running 16 total tests.
+ 
+ 
+Inserting n points into a PointST<String>
+ 
+               n      ops per second
+----------------------------------------
+=> passed   160000    1766481         
+=> passed   320000    1547888         
+=> passed   640000    1573051         
+=> passed  1280000    1294429         
+==> 4/4 tests passed
+ 
+Performing contains() queries after inserting n points into a PointST<String>
+ 
+               n      ops per second
+----------------------------------------
+=> passed   160000    1406593         
+=> passed   320000    1138940         
+=> passed   640000     836460         
+=> passed  1280000     791271         
+==> 4/4 tests passed
+ 
+Performing range() queries after inserting n points into a PointST<String>
+ 
+               n      ops per second
+----------------------------------------
+=> passed    10000       5934         
+=> passed    20000       2064         
+=> passed    40000        916         
+=> passed    80000        428         
+==> 4/4 tests passed
+ 
+Performing nearest() queries after inserting n points into a PointST<String>
+ 
+               n      ops per second
+----------------------------------------
+=> passed    10000       9493         
+=> passed    20000       2600         
+=> passed    40000       1097         
+=> passed    80000        512         
+==> 4/4 tests passed
+ 
+Total: 16/16 tests passed!
+ 
+ 
+================================================================
+ 
+ 
+ 
+Timing KdTreeST
+*-----------------------------------------------------------
+Running 25 total tests.
+ 
+ 
+Test 1a-d: Insert n points into a 2d tree. The table gives the average number of
+           calls to methods in RectHV and Point2D per call to put().
+ 
+                                                                                       
+         Point2D
+               n      ops per second       RectHV()           x()               y()    
+         equals()
+---------------------------------------------------------------------------------------
+-------------------------
+=> passed   100000     829663              21.7              41.5              41.5    
+           0.0         
+=> passed   250000     795416              23.7              45.4              45.4    
+           0.0         
+=> passed   500000     953022              23.8              45.7              45.7    
+           0.0         
+=> passed  1000000     772299              25.6              49.2              49.2    
+           0.0         
+==> 4/4 tests passed
+ 
+ 
+Test 2a-f: Insert n points into a 2d tree and perform contains() queries.
+           The table gives the average number of calls to methods in Point2D
+           per call to contains().
+ 
+                                                                               Point2D
+               n      ops per second       x()               y()               equals()
+---------------------------------------------------------------------------------------
+--------
+=> passed    10000    1784594              18.0              17.0              17.5    
+     
+=> passed    25000    1881620              19.8              18.8              19.3    
+     
+=> passed    50000    1630351              21.3              20.3              20.8    
+     
+=> passed   100000    1335959              21.9              20.9              21.4    
+     
+=> passed   250000    1148353              23.6              22.6              23.1    
+     
+=> passed   500000     966539              25.5              24.5              25.0    
+     
+=> passed  1000000     716437              27.2              26.2              26.7    
+     
+==> 7/7 tests passed
+ 
+ 
+Test 3a-g: Insert n points into a 2d tree and perform range() queries.
+           The table gives the average number of calls to methods in RectHV
+           and Point2D per call to range().
+ 
+               n      ops per second       intersects()      contains()        x()     
+          y()
+---------------------------------------------------------------------------------------
+------------------------
+=> passed    10000     728342              48.1              29.7              48.7    
+          13.3         
+=> passed    25000     668300              57.6              35.5              59.1    
+          17.2         
+=> passed    50000     556442              58.2              35.5              57.2    
+          12.8         
+=> passed   100000     419714              62.5              37.9              61.0    
+          15.0         
+=> passed   250000     303241              65.1              39.2              64.0    
+          16.2         
+=> passed   500000     287453              70.9              42.5              68.6    
+          16.9         
+=> passed  1000000     280255              74.4              44.3              71.3    
+          16.8         
+==> 7/7 tests passed
+ 
+ 
+Test 4a-g: Insert n points into a 2d tree and perform nearest() queries.
+           The table gives the average number of calls to methods in RectHV
+           and Point2D per call to nearest().
+ 
+                                         Point2D                 RectHV
+               n      ops per second     distanceSquaredTo()     distanceSquaredTo()   
+     x()               y()
+---------------------------------------------------------------------------------------
+---------------------------------
+=> passed    10000   391476                 285.0                  108.3               
+    253.7             253.7         
+=> passed    25000   402075                 271.7                  103.5               
+    243.4             242.4         
+=> passed    50000   332298                 289.9                  110.6               
+    258.8             258.4         
+=> passed   100000   240098                 310.6                  118.6               
+    278.4             277.3         
+=> passed   250000   220378                 335.8                  128.5               
+    301.7             300.7         
+=> passed   500000   197847                 360.7                  138.0               
+    323.5             322.4         
+=> passed  1000000   155419                 367.5                  140.9               
+    330.1             329.5         
+==> 7/7 tests passed
+ 
+ 
+Total: 25/25 tests passed!
+ 
+ 
+================================================================
+ 
+ 
+ 
